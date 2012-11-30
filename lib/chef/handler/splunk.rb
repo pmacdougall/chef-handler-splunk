@@ -17,7 +17,7 @@ require 'rest-client'
 class Chef
   class Handler
     class SplunkHandler < Chef::Handler
-      VERSION = '2.1.0'
+      VERSION = '2.1.1'
       API_ENDPOINT = 'services/receivers/simple'
 
       # * *Args*:
@@ -42,7 +42,7 @@ class Chef
         metadata = {
           'sourcetype' => 'json',
           'source' => 'chef-handler',
-          'host' => node.hostname,
+          'host' => node.fqdn,
           'index' => @index,
           'check-index' => false
         }
@@ -65,7 +65,7 @@ class Chef
         metadata = {
           'sourcetype' => 'json_chef-resources',
           'source' => 'chef-handler',
-          'host' => node.hostname,
+          'host' => node.fqdn,
           'index' => @index,
           'check-index' => false
         }
@@ -79,7 +79,7 @@ class Chef
         metadata = {
           'sourcetype' => 'chef-handler-backtrace',
           'source' => 'chef-handler',
-          'host' => node.hostname,
+          'host' => node.fqdn,
           'index' => @index,
           'check-index' => false
         }
